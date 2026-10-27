@@ -48,6 +48,21 @@ export const useListingStore = defineStore('listing', {
       }
     },
 
+    async actAddListingImage(
+      listingId: string,
+      image: File,
+      options: { isCover: boolean; position: number },
+    ) {
+      const LISTING_SERVICE = new ListingService()
+
+      try {
+        const { data } = await LISTING_SERVICE.addImage(listingId, image, options)
+        return data
+      } catch (err) {
+        throw err
+      }
+    },
+
     async actDeleteListing(id: string) {
       const LISTING_SERVICE = new ListingService()
 
